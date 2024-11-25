@@ -37,7 +37,7 @@ function setup() {
   // Calcolo la larghezza totale 
   let totalWidth = padding; // inizia con il padding iniziale
   for (let i = 0; i < data.getRowCount(); i++) {
-    let discharge = parseFloat(dataObj[i].discharge); // Portata del fiume, parse load serve per rendere la stringa un numero
+    let discharge = parseFloat(dataRows[i].getString("discharge")); // Portata del fiume, parse load serve per rendere la stringa un numero
     let widthRatio = map(discharge, 0, maxDischarge, 10, 200); // Calcola la larghezza del rettangolo
     totalWidth += widthRatio + padding; // Somma larghezza rettangolo e padding
   }
@@ -52,18 +52,18 @@ function setup() {
    // Ciclo per disegnare un rettangolo per ogni fiume
    for (let i = 0; i < data.getRowCount(); i++) {
     // Carico i dati della riga
-    let river = dataObj[i];
+    let river = dataRows[i];
 
     // Calcolo altezza proporzionale alla lunghezza del fiume
-    let riverLength = parseFloat(river.length); // Lunghezza del fiume
+    let riverLength = parseFloat(river.getString("length")); // Lunghezza del fiume
     let heightRatio = map(riverLength, 0, maxLength, 50, height - 100); // Mappa la lunghezza all'altezza
 
     // Calcolo larghezza proporzionale alla portata del fiume
-    let discharge = parseFloat(river.discharge); // Portata del fiume
+    let discharge = parseFloat(river.getString("discharge")); // Portata del fiume
     let widthRatio = map(discharge, 0, maxDischarge, 15, 200); // Mappa la portata alla larghezza
 
     // Calcolo altezza del rettangolo di sfondo in base all'area
-    let riverArea = parseFloat(river.area); // Area del fiume
+    let riverArea = parseFloat(river.getString("area")); // Area del fiume
     let areaHeight = map(riverArea, 0, maxArea, 10, height - 400); // Mappa l'area all'altezza del rettangolo di sfondo
 
     // Disegno il rettangolo di sfondo
