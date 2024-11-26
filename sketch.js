@@ -12,7 +12,7 @@ let dataObj;
 
 function preload() {
   // per caricare il dataset
-  data = loadTable("assets/datasetfiumi.csv", "csv", "header");
+  data = loadTable("assets/DatasetFiumi.csv", "csv", "header");
 }
 
 //colori
